@@ -1,6 +1,6 @@
-package textgame.Item;
+package java.textgame.item;
 
-public class ItemBoots implements IItem{
+public class ItemSword implements IItem {
 
     private int healthPoints;
     private int damagePoints;

@@ -1,4 +1,4 @@
-package textgame.skill;
+package java.textgame.skill;
 
 public interface ISkill {
 

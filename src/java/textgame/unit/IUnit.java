@@ -1,6 +1,6 @@
-package textgame.unit;
+package java.textgame.unit;
 
-import textgame.skill.ISkill;
+import java.textgame.skill.ISkill;
 
 import java.util.List;
 

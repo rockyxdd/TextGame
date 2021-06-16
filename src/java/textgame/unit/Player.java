@@ -1,9 +1,9 @@
-package textgame.unit;
+package java.textgame.unit;
 
-import textgame.Item.ItemBoots;
-import textgame.Item.ItemHat;
-import textgame.Item.ItemSword;
-import textgame.skill.ISkill;
+import java.textgame.item.ItemBoots;
+import java.textgame.item.ItemHat;
+import java.textgame.item.ItemSword;
+import java.textgame.skill.ISkill;
 
 import java.util.List;
 
@@ -15,6 +15,15 @@ public class Player implements IUnit{
     private ItemHat hat;
     private ItemBoots boots;
     private ItemSword sword;
+
+    public Player() {
+        this.name = "";
+        this.health = 100;
+        this.skills = null;
+        this.hat = null;
+        this.boots = null;
+        this.sword = null;
+    }
 
     @Override
     public String getName() {

@@ -1,11 +1,11 @@
-package textgame.skill;
+package java.textgame.skill;
 
-public class HealSkill implements ISkill{
+public class DamageSkill implements ISkill {
 
     private String name;
     private String description;
     private int usagePerFight;
-    private int healPoints;
+    private int damagePoints;
 
     @Override
     public String getName() {
@@ -34,11 +34,12 @@ public class HealSkill implements ISkill{
         this.usagePerFight = usagePerFight;
     }
 
-    public int getHealPoints() {
-        return healPoints;
+    public int getDamagePoints() {
+        return damagePoints;
     }
 
-    public void setHealPoints(int healPoints) {
-        this.healPoints = healPoints;
+    public void setDamagePoints(int damagePoints) {
+        this.damagePoints = damagePoints;
     }
+
 }

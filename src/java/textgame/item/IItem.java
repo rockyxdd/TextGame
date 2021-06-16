@@ -1,4 +1,4 @@
-package textgame.Item;
+package java.textgame.item;
 
 public interface IItem {
 
