@@ -30,6 +30,22 @@ public class HealSkill implements ISkill{
         return usagePerFight;
     }
 
+
+    @Override
+    public boolean isHeal() {
+        return true;
+    }
+
+    @Override
+    public boolean isDamage() {
+        return false;
+    }
+
+    @Override
+    public int getDamagePoints() {
+        return 0;
+    }
+
     public void setUsagePerFight(int usagePerFight) {
         this.usagePerFight = usagePerFight;
     }

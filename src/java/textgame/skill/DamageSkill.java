@@ -7,6 +7,13 @@ public class DamageSkill implements ISkill {
     private int usagePerFight;
     private int damagePoints;
 
+    public DamageSkill(Skills skill) {
+        this.name = skill.getName();
+        this.description = skill.getDescription();
+        this.damagePoints = skill.getDamage();
+        this.usagePerFight = skill.getUsagePerFight();
+    }
+
     @Override
     public String getName() {
         return name;
@@ -30,6 +37,21 @@ public class DamageSkill implements ISkill {
         return usagePerFight;
     }
 
+    @Override
+    public boolean isHeal() {
+        return false;
+    }
+
+    @Override
+    public boolean isDamage() {
+        return true;
+    }
+
+    @Override
+    public int getHealPoints() {
+        return 0;
+    }
+
     public void setUsagePerFight(int usagePerFight) {
         this.usagePerFight = usagePerFight;
     }
@@ -38,8 +60,8 @@ public class DamageSkill implements ISkill {
         return damagePoints;
     }
 
+
     public void setDamagePoints(int damagePoints) {
         this.damagePoints = damagePoints;
     }
-
 }

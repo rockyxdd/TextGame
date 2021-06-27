@@ -7,4 +7,12 @@ public interface ISkill {
     String getDescription();
 
     int getUsagePerFight();
+
+    int getDamagePoints();
+
+    int getHealPoints();
+
+    boolean isHeal();
+
+    boolean isDamage();
 }

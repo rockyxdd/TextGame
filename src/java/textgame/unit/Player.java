@@ -5,16 +5,18 @@ import java.textgame.item.ItemHat;
 import java.textgame.item.ItemSword;
 import java.textgame.skill.ISkill;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Player implements IUnit{
 
     private String name;
     private int health;
-    private List<ISkill> skills;
+    private List<ISkill> skills = new ArrayList<>();
     private ItemHat hat;
     private ItemBoots boots;
     private ItemSword sword;
+    private int fullHealth;
 
     public Player() {
         this.name = "";
@@ -23,6 +25,7 @@ public class Player implements IUnit{
         this.hat = null;
         this.boots = null;
         this.sword = null;
+        this.fullHealth = 100;
     }
 
     @Override
@@ -41,6 +44,7 @@ public class Player implements IUnit{
 
     public void setHealth(int health) {
         this.health = health;
+        calculateFullHealth();
     }
 
     @Override
@@ -58,6 +62,7 @@ public class Player implements IUnit{
 
     public void setHat(ItemHat hat) {
         this.hat = hat;
+        calculateFullHealth();
     }
 
     public ItemBoots getBoots() {
@@ -66,6 +71,7 @@ public class Player implements IUnit{
 
     public void setBoots(ItemBoots boots) {
         this.boots = boots;
+        calculateFullHealth();
     }
 
     public ItemSword getSword() {
@@ -74,5 +80,18 @@ public class Player implements IUnit{
 
     public void setSword(ItemSword sword) {
         this.sword = sword;
+        calculateFullHealth();
+    }
+
+    public void setFullHealth(int fullHealth) {
+        this.fullHealth = fullHealth;
+    }
+
+    private void calculateFullHealth() {
+        this.fullHealth = health + hat.getHealthPoints() + boots.getHealthPoints() + sword.getHealthPoints();
+    }
+
+    public int getFullHealth() {
+        return fullHealth;
     }
 }

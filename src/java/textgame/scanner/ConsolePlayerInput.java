@@ -2,7 +2,7 @@ package java.textgame.scanner;
 
 import java.util.Scanner;
 
-public class consolePlayerInput implements IPlayerInput{
+public class ConsolePlayerInput implements IPlayerInput{
 
     private Scanner in = new Scanner(System.in);
 

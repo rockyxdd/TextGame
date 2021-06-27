@@ -4,28 +4,45 @@ import java.textgame.message.Message;
 import java.textgame.printer.ConsolePrinter;
 import java.textgame.printer.IPrinter;
 import java.textgame.scanner.IPlayerInput;
-import java.textgame.scanner.consolePlayerInput;
+import java.textgame.scanner.ConsolePlayerInput;
+import java.textgame.skill.DamageSkill;
+import java.textgame.skill.ISkill;
+import java.textgame.skill.Skills;
+import java.textgame.unit.Monster;
 import java.textgame.unit.Player;
+import java.util.ArrayList;
 import java.util.List;
 
 public class Game {
 
-    private Player player = new Player();
+    private final Player player = new Player();
     private Message msg;
     private IPrinter printer;
     private IPlayerInput in;
     private List<String> existingWays;
+    private boolean isCombat;
 
     public void execute(String gameType) {
-        if (gameType.equals("CONSOLE")) {
+        if ("CONSOLE".equals(gameType)) {
             initConsole();
             printer.print(msg.rules(player.getName()));
+            while (isCombat) {
+                if (existingWays.isEmpty()) {
+                    printer.print(msg.win());
+                    isCombat = false;
+                }
+                {
+                    ConsoleCombat combat = new ConsoleCombat(player, playerChoice());
+                    isCombat = combat.executeCombat();
+                }
+            }
         }
     }
 
     private void initConsole() {
         this.printer = new ConsolePrinter();
-        this.in = new consolePlayerInput();
+        this.in = new ConsolePlayerInput();
+        this.isCombat = true;
         createPLayer();
         generateWays();
     }
@@ -33,16 +50,21 @@ public class Game {
     private void createPLayer() {
         printer.print(msg.greetings());
         player.setName(in.playerInput());
+        List<ISkill> skills = new ArrayList<>();
+        skills.add(new DamageSkill(Skills.kiss));
+        skills.add(new DamageSkill(Skills.oneShot));
+        player.setSkills(skills);
     }
 
-    private String playerChoice() {
-        msg.ways(existingWays);
+    private Monster playerChoice() {
+        printer.print(msg.ways(existingWays));
         String choice = in.playerInput();
         while (isNotChoice(choice)) {
-            msg.inputErrorMsg();
+            printer.print(msg.inputErrorMsg());
             choice = in.playerInput();
         }
-        return choice;
+        existingWays.remove(choice);
+        return new Monster().generateMonster(choice);
     }
 
     private void generateWays() {
